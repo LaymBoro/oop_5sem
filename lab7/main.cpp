@@ -42,19 +42,16 @@ int main()
 	arr.push_back(std::make_shared<Review>("1", 100));
 	arr.push_back(std::make_shared<Review>("2", 2));
 
-    array = arr;
 
-    arr.push_back(std::make_shared<Review>());
-
-    // sortByRating(arr);
-    // sortByReview(array);
-
+    sortByRating(arr);
+    std::cout << "-------------------------------------\n";
     for (iterator j = arr.begin(); j != arr.end() ; j++) 
     {
         std::cout << (**j) << "\n";
     }
-    std::cout << "-----\n";
-    for (iterator i = array.begin(); i != array.end() ; i++) 
+    sortByReview(arr);
+    std::cout << "-------------------------------------\n";
+    for (iterator i = arr.begin(); i != arr.end() ; i++) 
     {
         std::cout << (**i) << "\n";
     }
