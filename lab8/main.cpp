@@ -15,6 +15,10 @@ void sort(std::vector<std::shared_ptr<std::string>> arr)
             {
                 std::swap((**j), (**i));
             }
+            else if((**i).compare((**j)) == 0)
+            {
+                (**i).erase();
+            }
         }
     }
 }
@@ -51,30 +55,24 @@ int main()
 
     iterator i = MatFriends.begin();
     iterator j = PatFriends.begin();
-    while (i != MatFriends.end() | j != PatFriends.end())
+   
+    while(i != MatFriends.end() || j != PatFriends.end())
     {
-        if((**i).compare((**j)) > 0)
-        {
-            BothFriends.push_back(*i);
-            i++;
-        }
-        else if((**i).compare((**j)) == 0)
-        {
-            BothFriends.push_back(*i);
-            i++;
-            j++;
-        }
-        else if((**i).compare((**j)) < 0)
-        {
-            BothFriends.push_back(*j);
-            j++;
-        }
+        BothFriends.push_back(*i);
+        BothFriends.push_back(*j);
+        i++;
+        j++;
     }
 
+    sort(BothFriends);
+    
     std::cout << "---------------Both friends--------------\n";
     for (iterator i = BothFriends.begin(); i != BothFriends.end(); i++) 
     {
-        std::cout << (**i) << "\n";
+        if(!((**i).empty()))
+        {
+            std::cout << (**i) << "\n";
+        }
     }
 
     return 0;
