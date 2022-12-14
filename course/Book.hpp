@@ -11,6 +11,9 @@ class Book
 
     public:
 
+    class AvailableNotAccept : public std::exception {
+        const char *what() const throw();
+    };
     Book();
     Book(std::string title, std::string author, std::string publisher, int year, int shelfNumber, bool available);
     Book(const Book &book);
@@ -30,6 +33,6 @@ class Book
     void setShelfNumber(int shelfNumber);
     void setAvailable(bool available);
 
-    friend std::istream &operator << (std::istream &out, Book &book);
-    friend std::ostream &operator >> (std::ostream &out, Book &book);
+    friend std::istream &operator>>(std::istream &out, Book &book);
+    friend std::ostream &operator<<(std::ostream &out, Book &book);
 };

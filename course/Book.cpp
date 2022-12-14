@@ -106,26 +106,43 @@ void Book::setAvailable(bool available)
     this->available = available;
 }
 
-std::ostream &operator << (std::ostream &out, Book book)
-{
-    std::cout << "Title: " << book.getTitle() << "Author: " << book.getAuthor() << "Publisher: " << book.getPublisher() << "Year: " << book.getYear() << "Shelf number: " << book.getShelfNumber() << "Available in lib: " << book.presentAvailable() << "\n";
-}
-
 std::istream &operator>>(std::istream &in, Book &book)
 {
-
+    
+    std::string tmpTitle, tmpAuthor, tmpPublisher;
+    int tmpYear, tmpShelfNumber;
+    int tmpAvailable;
     std::cout << "Title: ";
-    in >> book.title;
-    std::cout << "\nAuthor: ";
-    in >> book.author;
-    std::cout << "\nPublisher: ";
-    in >> book.publisher;
-    std::cout << "\nYear: ";
-    in >> book.year;
-    std::cout << "\nShelf number: ";
-    in >> book.shelfNumber;
-    std::cout << "\nAvailable: ";
-    in >> book.available;
+    in >> tmpTitle;
+    std::cout << "Author: ";
+    in >> tmpAuthor;
+    std::cout << "Publisher: ";
+    in >> tmpPublisher;
+    std::cout << "Year: ";
+    in >> tmpYear;
+    std::cout << "Shelf number: ";
+    in >> tmpShelfNumber;
+    std::cout << "Available: ";
+    in >> tmpAvailable;
+    if (tmpAvailable != 0 && tmpAvailable != 1)
+        throw Book::AvailableNotAccept();
+    book.setTitle(tmpTitle);
+    book.setAuthor(tmpAuthor);
+    book.setPublisher(tmpPublisher);
+    book.setYear(tmpYear);
+    book.setShelfNumber(tmpShelfNumber);
+    book.setAvailable(tmpAvailable);
 
     return in;
+}
+
+std::ostream &operator<<(std::ostream &out, Book &book)
+{
+    out << "Title: " << book.getTitle() << " Author: " << book.getAuthor() << " Publisher: " << book.getPublisher() << " Year: " << book.getYear() << " Shelf number: " << book.getShelfNumber() << " Available in lib: " << book.presentAvailable() << "\n";
+    return (out);
+}
+
+const char *Book::AvailableNotAccept::what() const throw()
+{
+    return "Available == 0 || Availavble == 1";
 }
