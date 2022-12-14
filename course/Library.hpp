@@ -17,7 +17,7 @@ class Library
     };
     void sortByTitle();
     std::vector<Book> findByAuthor(std::string author);
-    void addBook(const Book &book);
+    void addBook(Book &book);
     std::vector<Book>::iterator getBegin();
     std::vector<Book>::iterator getEnd();
     void showAuthor(std::string author);
