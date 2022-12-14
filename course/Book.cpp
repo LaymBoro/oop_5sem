@@ -20,7 +20,7 @@ Book::Book(std::string title, std::string author, std::string publisher, int yea
     this->available = available;
 }
 
-Book::Book(Book &book)
+Book::Book(const Book &book)
 {
     this->title = book.title;
     this->author = book.author;
@@ -109,4 +109,23 @@ void Book::setAvailable(bool available)
 std::ostream &operator << (std::ostream &out, Book book)
 {
     std::cout << "Title: " << book.getTitle() << "Author: " << book.getAuthor() << "Publisher: " << book.getPublisher() << "Year: " << book.getYear() << "Shelf number: " << book.getShelfNumber() << "Available in lib: " << book.presentAvailable() << "\n";
+}
+
+std::istream &operator>>(std::istream &in, Book &book)
+{
+
+    std::cout << "Title: ";
+    in >> book.title;
+    std::cout << "\nAuthor: ";
+    in >> book.author;
+    std::cout << "\nPublisher: ";
+    in >> book.publisher;
+    std::cout << "\nYear: ";
+    in >> book.year;
+    std::cout << "\nShelf number: ";
+    in >> book.shelfNumber;
+    std::cout << "\nAvailable: ";
+    in >> book.available;
+
+    return in;
 }
