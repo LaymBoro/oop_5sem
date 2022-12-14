@@ -125,7 +125,9 @@ std::istream &operator>>(std::istream &in, Book &book)
     std::cout << "Available: ";
     in >> tmpAvailable;
     if (tmpAvailable != 0 && tmpAvailable != 1)
+    {
         throw Book::AvailableNotAccept();
+    }
     book.setTitle(tmpTitle);
     book.setAuthor(tmpAuthor);
     book.setPublisher(tmpPublisher);
@@ -144,5 +146,27 @@ std::ostream &operator<<(std::ostream &out, Book &book)
 
 const char *Book::AvailableNotAccept::what() const throw()
 {
-    return "Available == 0 || Availavble == 1";
+    return "Available:\n'0' - on hands\n'1' - available in library\n";
+}
+
+const char *Book::YearNotAccept::what() const throw()
+{
+    int value;
+	while (!(std::cin >> value))
+	{
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+    return "Year definition is number";
+}
+
+const char *Book::ShelfNumberNotAccept::what() const throw()
+{
+    int value;
+	while (!(std::cin >> value))
+	{
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+    return "Shelf number definition is number";
 }

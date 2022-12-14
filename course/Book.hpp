@@ -14,6 +14,12 @@ class Book
     class AvailableNotAccept : public std::exception {
         const char *what() const throw();
     };
+    class YearNotAccept : public std::exception {
+        const char *what() const throw();
+    };
+    class ShelfNumberNotAccept : public std::exception {
+        const char *what() const throw();
+    };
     Book();
     Book(std::string title, std::string author, std::string publisher, int year, int shelfNumber, bool available);
     Book(const Book &book);

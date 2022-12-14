@@ -10,7 +10,7 @@ Library::~Library()
 
 const char *Library::VectorIsEmpty::what() const throw()
 {
-	return "Vector is empty!\n";
+	return "Library is empty\n";
 }
 void Library::sortByTitle()
 {
@@ -42,7 +42,11 @@ std::vector<Book> Library::findByAuthor(std::string author)
 
 void Library::addBook(const Book &book)
 {
-	libShelf.push_back(book);
+	if(book.getYear() != 0 && book.getShelfNumber() != 0)
+	{
+		libShelf.push_back(book);
+	}
+	
 }
 
 std::vector<Book>::iterator Library::getBegin()
@@ -69,7 +73,6 @@ void Library::showAuthor(std::string author)
 
 void Library::changeAvailable(bool av)
 {
-	std::string tt;
 	int temp = 0;
 	std::vector<Book> tmp;
 	for (std::vector<Book>::iterator i = this->getBegin(); i != this->getEnd(); i++) 
@@ -80,9 +83,16 @@ void Library::changeAvailable(bool av)
 			tmp.push_back(*i);
 		}
 	}
-	std::cout << "";
+	if(av == 1)
+	{
+		std::cout << "What book you need to return?\n";
+	}
+	else
+	{
+		std::cout << "What book you want to take?\n";
+	}
 	std::cin >> temp;
-	std::vector<Book>::iterator j = this->getBegin() + temp - 1;
+	std::vector<Book>::iterator j = this->getBegin() + temp;
 	for(std::vector<Book>::iterator i = this->getBegin(); i != this->getEnd(); i++)
 	{
 		if (i == j) 
@@ -95,7 +105,9 @@ void Library::changeAvailable(bool av)
 std::ostream &operator<<(std::ostream &out, Library &lib)
 {
 	if (lib.libShelf.size() == 0)
-		throw ;
+	{
+		throw Library::VectorIsEmpty();
+	}
 	for (std::vector<Book>::iterator i = lib.getBegin(); i != lib.getEnd(); i++) 
 	{
 		std::cout << " " << (*i) << "\n";
