@@ -40,13 +40,12 @@ std::vector<Book> Library::findByAuthor(std::string author)
 	return authorLib;
 }
 
-void Library::addBook(const Book &book)
+void Library::addBook(Book &book)
 {
 	if(book.getYear() != 0 && book.getShelfNumber() != 0)
 	{
 		libShelf.push_back(book);
 	}
-	
 }
 
 std::vector<Book>::iterator Library::getBegin()
