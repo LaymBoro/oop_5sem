@@ -13,7 +13,7 @@ class Book
 
     Book();
     Book(std::string title, std::string author, std::string publisher, int year, int shelfNumber, bool available);
-    Book(Book &book);
+    Book(const Book &book);
     ~Book();
 
     std::string getTitle();
@@ -30,5 +30,6 @@ class Book
     void setShelfNumber(int shelfNumber);
     void setAvailable(bool available);
 
-    friend std::ostream &operator << (std::ostream &out, Book &book);
+    friend std::istream &operator << (std::istream &out, Book &book);
+    friend std::ostream &operator >> (std::ostream &out, Book &book);
 };
