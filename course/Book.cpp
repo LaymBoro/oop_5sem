@@ -106,13 +106,6 @@ void Book::setAvailable(bool available)
     this->available = available;
 }
 
-std::ostream Book::showForRead(std::ostream &out, Book &book)
-{
-    out << book.getTitle() << book.getAuthor() << book.getPublisher() << book.getYear() << book.getShelfNumber() << book.presentAvailable();
-    return (out);
-
-}
-
 std::istream &operator>>(std::istream &in, Book &book)
 {
     
@@ -148,7 +141,7 @@ std::istream &operator>>(std::istream &in, Book &book)
 std::ostream &operator<<(std::ostream &out, Book &book)
 {
     out << "Title: " << book.getTitle() << " Author: " << book.getAuthor() << " Publisher: " << book.getPublisher() << " Year: " << book.getYear() << " Shelf number: " << book.getShelfNumber() << " Available in lib: " << book.presentAvailable();
-    return (out);
+    return out;
 }
 
 const char *Book::AvailableNotAccept::what() const throw()
