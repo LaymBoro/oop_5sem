@@ -31,7 +31,7 @@ std::vector<Book> Library::findByAuthor(std::string author)
 	std::vector<Book> authorLib;
 	for (std::vector<Book>::iterator i = libShelf.begin(); i != libShelf.end(); i++) 
 	{
-		if (((*i).getAuthor()).compare(author) != 0) 
+		if (((*i).getAuthor()).compare(author) == 0) 
 		{
 			authorLib.push_back((*i));
 		}
@@ -40,12 +40,13 @@ std::vector<Book> Library::findByAuthor(std::string author)
 	return authorLib;
 }
 
-void Library::addBook(Book &book)
+void Library::addBook(const Book &book)
 {
-	if(book.getYear() != 0 && book.getShelfNumber() != 0)
-	{
-		libShelf.push_back(book);
-	}
+	// if(book.getYear() != 0 && book.getShelfNumber() != 0)
+	// {
+	// 	libShelf.push_back(book);
+	// }
+	libShelf.push_back(book);
 }
 
 std::vector<Book>::iterator Library::getBegin()
@@ -99,6 +100,11 @@ void Library::changeAvailable(bool av)
 			(*i).setAvailable(av);
 		}
 	}
+}
+
+std::vector<Book> Library::getVector()
+{
+    return libShelf;
 }
 
 std::ostream &operator<<(std::ostream &out, Library &lib)
