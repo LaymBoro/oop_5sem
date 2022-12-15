@@ -38,6 +38,7 @@ class Book
     void setYear(int year);
     void setShelfNumber(int shelfNumber);
     void setAvailable(bool available);
+    std::ostream showForRead(std::ostream &out, Book &book);
 
     friend std::istream &operator>>(std::istream &out, Book &book);
     friend std::ostream &operator<<(std::ostream &out, Book &book);

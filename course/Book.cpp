@@ -106,6 +106,13 @@ void Book::setAvailable(bool available)
     this->available = available;
 }
 
+std::ostream Book::showForRead(std::ostream &out, Book &book)
+{
+    out << book.getTitle() << book.getAuthor() << book.getPublisher() << book.getYear() << book.getShelfNumber() << book.presentAvailable();
+    return (out);
+
+}
+
 std::istream &operator>>(std::istream &in, Book &book)
 {
     
@@ -140,7 +147,7 @@ std::istream &operator>>(std::istream &in, Book &book)
 
 std::ostream &operator<<(std::ostream &out, Book &book)
 {
-    out << "Title: " << book.getTitle() << " Author: " << book.getAuthor() << " Publisher: " << book.getPublisher() << " Year: " << book.getYear() << " Shelf number: " << book.getShelfNumber() << " Available in lib: " << book.presentAvailable() << "\n";
+    out << "Title: " << book.getTitle() << " Author: " << book.getAuthor() << " Publisher: " << book.getPublisher() << " Year: " << book.getYear() << " Shelf number: " << book.getShelfNumber() << " Available in lib: " << book.presentAvailable();
     return (out);
 }
 
@@ -157,7 +164,7 @@ const char *Book::YearNotAccept::what() const throw()
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
-    return "Year definition is number";
+    return "Year definition is number\n";
 }
 
 const char *Book::ShelfNumberNotAccept::what() const throw()
@@ -168,5 +175,5 @@ const char *Book::ShelfNumberNotAccept::what() const throw()
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
-    return "Shelf number definition is number";
+    return "Shelf number definition is number\n";
 }
