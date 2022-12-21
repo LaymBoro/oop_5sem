@@ -12,7 +12,6 @@ int main()
     int menu = 0;
     Library lib;
     Library tmp;
-    Library fileTmp;
     std::string author;
 
 
@@ -108,7 +107,7 @@ void fileOutput(std::vector<Book> lib)
 	{
         for (std::vector<Book>::iterator i = lib.begin(); i != lib.end(); i++)
         {
-			out << (*i).getTitle() << " " << (*i).getAuthor() << " " << (*i).getPublisher() << " " << (*i).getYear() << " " << (*i).getShelfNumber() << " " << (*i).presentAvailable() << "\n";
+			out << (*i).getTitle() << " " << (*i).getAuthor() << " " << (*i).getPublisher() << " " << (*i).getYear() << " " << (*i).getShelfNumber() << " " << (*i).getAvailable() << "\n";
         }
 	}
 	else
@@ -137,29 +136,22 @@ void fileInput(Library& lib)
 	std::cout << "Enter file name for file input.\n";
 	std::cin >> fileName;
 	std::vector<Book> ret;
-	std::ifstream file;
-	file.open(fileName.c_str());
-	if (file.is_open() == 1)
+	std::ifstream in;
+	in.open(fileName.c_str());
+	if (in.is_open() == 1)
 	{
-		std::string str;
-		while (std::getline(file, str, '\n'))
+		std::string title, author, publisher, year, shelfNumber, available;
+		while (in >> title >> author >> publisher >> year >> shelfNumber >> available)
 		{
 			Book tmp;
-            std::string title, author, publisher, year, shelfNumber, available;
-            std::getline(file, title, ' ');
-            std::getline(file, author, ' ');
-            std::getline(file, publisher, ' ');
-            std::getline(file, year, ' ');
-            std::getline(file, shelfNumber, ' ');
-            std::getline(file, available, ' ');
+            
             tmp.setTitle(title);
 			tmp.setAuthor(author);
             tmp.setPublisher(publisher);
-            std::cout << "\n\n" << title << "\n\n";
             tmp.setYear(stoi(year));
             
             tmp.setShelfNumber(stoi(shelfNumber));
-            tmp.setAvailable(stoi(shelfNumber));
+            tmp.setAvailable(stoi(available));
             ret.push_back(tmp);
 		}
 	}
@@ -167,7 +159,7 @@ void fileInput(Library& lib)
 	{
 		std::cout << "invalid filename\n";
 	}
-	file.close();
+	in.close();
 	for (std::vector<Book>::iterator i = ret.begin(); i != ret.end(); i++) 
 	{
 		lib.addBook((*i));

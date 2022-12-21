@@ -1,1 +1,3 @@
 Title: 1 Author: 1 Publisher: 1 Year: 1 Shelf number: 1 Available in lib: available in library
+Title: 3 Author: 3 Publisher: 3 Year: 3 Shelf number: 3 Available in lib: available in library
+Title: 5 Author: 5 Publisher: 5 Year: 1 Shelf number: 1 Available in lib: available in library
