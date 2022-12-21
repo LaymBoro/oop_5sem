@@ -42,10 +42,6 @@ std::vector<Book> Library::findByAuthor(std::string author)
 
 void Library::addBook(const Book &book)
 {
-	// if(book.getYear() != 0 && book.getShelfNumber() != 0)
-	// {
-	// 	libShelf.push_back(book);
-	// }
 	libShelf.push_back(book);
 }
 
@@ -85,11 +81,11 @@ void Library::changeAvailable(bool av)
 	}
 	if(av == 1)
 	{
-		std::cout << "What book you need to return?\n";
+		std::cout << "\nWhat book you need to return?\n";
 	}
 	else
 	{
-		std::cout << "What book you want to take?\n";
+		std::cout << "\nWhat book you want to take?\n";
 	}
 	std::cin >> temp;
 	std::vector<Book>::iterator j = this->getBegin() + temp;
